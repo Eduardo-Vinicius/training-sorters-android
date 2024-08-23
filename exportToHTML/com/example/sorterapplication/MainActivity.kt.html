@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sorterapplication</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">ComponentActivity</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">setContent</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">enableEdgeToEdge</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">runtime</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Alignment</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Modifier</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">input</span><span class="s2">.</span><span class="s1">TextFieldValue</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">tooling</span><span class="s2">.</span><span class="s1">preview</span><span class="s2">.</span><span class="s1">Preview</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">unit</span><span class="s2">.</span><span class="s1">dp</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sorterapplication</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">theme</span><span class="s2">.</span><span class="s1">SorterApplicationTheme</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : ComponentActivity</span><span class="s2">() {</span>
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">enableEdgeToEdge</span><span class="s2">()</span>
+        <span class="s1">setContent </span><span class="s2">{</span>
+            <span class="s1">SorterApplicationTheme </span><span class="s2">{</span>
+                <span class="s1">Scaffold</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">fillMaxSize</span><span class="s2">()) { </span><span class="s1">innerPadding </span><span class="s2">-&gt;</span>
+                    <span class="s1">TrainingSorterScreen</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s1">innerPadding</span><span class="s2">))</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">TrainingSorterScreen</span><span class="s2">(</span><span class="s1">modifier: Modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">) {</span>
+    <span class="s3">// Estado para armazenar a entrada do usuário</span>
+    <span class="s0">var </span><span class="s1">trainingDay by remember </span><span class="s2">{ </span><span class="s1">mutableStateOf</span><span class="s2">(</span><span class="s1">TextFieldValue</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">)) }</span>
+    <span class="s0">var </span><span class="s1">repetitions by remember </span><span class="s2">{ </span><span class="s1">mutableStateOf</span><span class="s2">(</span><span class="s1">TextFieldValue</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">)) }</span>
+    <span class="s0">var </span><span class="s1">sortedTrainings by remember </span><span class="s2">{ </span><span class="s1">mutableStateOf</span><span class="s2">&lt;</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt;&gt;(</span><span class="s1">emptyList</span><span class="s2">()) }</span>
+
+    <span class="s0">val </span><span class="s1">trainings </span><span class="s2">= </span><span class="s1">mapOf</span><span class="s2">(</span>
+        <span class="s4">&quot;biceps&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Rosca direta com barra&quot;</span><span class="s2">, </span><span class="s4">&quot;Rosca alternada com halteres&quot;</span><span class="s2">, </span><span class="s4">&quot;Rosca concentrada&quot;</span><span class="s2">, </span><span class="s4">&quot;Rosca martelo&quot;</span><span class="s2">, </span><span class="s4">&quot;Rosca inversa com barra&quot;</span><span class="s2">),</span>
+        <span class="s4">&quot;triceps&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Tríceps pulley&quot;</span><span class="s2">, </span><span class="s4">&quot;Tríceps testa&quot;</span><span class="s2">, </span><span class="s4">&quot;Tríceps banco&quot;</span><span class="s2">, </span><span class="s4">&quot;Tríceps francês&quot;</span><span class="s2">, </span><span class="s4">&quot;Mergulho entre bancos&quot;</span><span class="s2">),</span>
+        <span class="s4">&quot;posterior_coxa&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Cadeira flexora&quot;</span><span class="s2">, </span><span class="s4">&quot;Mesa flexora&quot;</span><span class="s2">, </span><span class="s4">&quot;Stiff&quot;</span><span class="s2">, </span><span class="s4">&quot;Good morning&quot;</span><span class="s2">, </span><span class="s4">&quot;Levantamento terra romeno&quot;</span><span class="s2">),</span>
+        <span class="s4">&quot;quadriceps&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Agachamento livre&quot;</span><span class="s2">, </span><span class="s4">&quot;Leg press&quot;</span><span class="s2">, </span><span class="s4">&quot;Cadeira extensora&quot;</span><span class="s2">, </span><span class="s4">&quot;Afundo com halteres&quot;</span><span class="s2">, </span><span class="s4">&quot;Agachamento no Smith&quot;</span><span class="s2">),</span>
+        <span class="s4">&quot;costas&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Remada curvada&quot;</span><span class="s2">, </span><span class="s4">&quot;Puxada alta&quot;</span><span class="s2">, </span><span class="s4">&quot;Remada cavalinho&quot;</span><span class="s2">, </span><span class="s4">&quot;Levantamento terra&quot;</span><span class="s2">, </span><span class="s4">&quot;Pull-up (barra fixa)&quot;</span><span class="s2">),</span>
+        <span class="s4">&quot;peito&quot; </span><span class="s1">to listOf</span><span class="s2">(</span><span class="s4">&quot;Supino reto&quot;</span><span class="s2">, </span><span class="s4">&quot;Supino inclinado&quot;</span><span class="s2">, </span><span class="s4">&quot;Crucifixo com halteres&quot;</span><span class="s2">, </span><span class="s4">&quot;Supino declinado&quot;</span><span class="s2">, </span><span class="s4">&quot;Cross over&quot;</span><span class="s2">)</span>
+    <span class="s2">)</span>
+
+    <span class="s0">fun </span><span class="s1">trainingSorter</span><span class="s2">(</span><span class="s1">trainingDay: String</span><span class="s2">, </span><span class="s1">rep: Int</span><span class="s2">) {</span>
+        <span class="s0">val </span><span class="s1">listTrainings </span><span class="s2">= </span><span class="s1">trainings</span><span class="s2">[</span><span class="s1">trainingDay</span><span class="s2">]</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">listTrainings </span><span class="s2">== </span><span class="s0">null </span><span class="s2">|| </span><span class="s1">rep </span><span class="s2">&lt;= </span><span class="s5">0</span><span class="s2">) {</span>
+            <span class="s1">sortedTrainings </span><span class="s2">= </span><span class="s1">listOf</span><span class="s2">(</span><span class="s4">&quot;Treino não configurado no sistema ou número de séries inválido.&quot;</span><span class="s2">)</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">sortedTrainings </span><span class="s2">= </span><span class="s1">listTrainings</span><span class="s2">.</span><span class="s1">shuffled</span><span class="s2">().</span><span class="s1">take</span><span class="s2">(</span><span class="s1">rep</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">Column</span><span class="s2">(</span>
+        <span class="s1">modifier </span><span class="s2">= </span><span class="s1">modifier</span>
+            <span class="s2">.</span><span class="s1">fillMaxSize</span><span class="s2">()</span>
+            <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">),</span>
+        <span class="s1">horizontalAlignment </span><span class="s2">= </span><span class="s1">Alignment</span><span class="s2">.</span><span class="s1">CenterHorizontally</span><span class="s2">,</span>
+        <span class="s1">verticalArrangement </span><span class="s2">= </span><span class="s1">Arrangement</span><span class="s2">.</span><span class="s1">Center</span>
+    <span class="s2">) {</span>
+
+        <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+        <span class="s1">Text</span><span class="s2">(</span><span class="s4">&quot;O que vamos treinar hoje?&quot;</span><span class="s2">)</span>
+        <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+        <span class="s1">OutlinedTextField</span><span class="s2">(</span>
+            <span class="s1">value </span><span class="s2">= </span><span class="s1">trainingDay</span><span class="s2">,</span>
+            <span class="s1">onValueChange </span><span class="s2">= { </span><span class="s1">trainingDay </span><span class="s2">= </span><span class="s1">it </span><span class="s2">},</span>
+            <span class="s1">label </span><span class="s2">= { </span><span class="s1">Text</span><span class="s2">(</span><span class="s4">&quot;Tipo de Treino&quot;</span><span class="s2">) }</span>
+        <span class="s2">)</span>
+        <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+        <span class="s1">OutlinedTextField</span><span class="s2">(</span>
+            <span class="s1">value </span><span class="s2">= </span><span class="s1">repetitions</span><span class="s2">,</span>
+            <span class="s1">onValueChange </span><span class="s2">= { </span><span class="s1">repetitions </span><span class="s2">= </span><span class="s1">it </span><span class="s2">},</span>
+            <span class="s1">label </span><span class="s2">= { </span><span class="s1">Text</span><span class="s2">(</span><span class="s4">&quot;Número de Exercícios&quot;</span><span class="s2">) }</span>
+        <span class="s2">)</span>
+        <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+        <span class="s1">Button</span><span class="s2">(</span><span class="s1">onClick </span><span class="s2">= {</span>
+            <span class="s0">val </span><span class="s1">rep </span><span class="s2">= </span><span class="s1">repetitions</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">toIntOrNull</span><span class="s2">() </span><span class="s1">?: </span><span class="s5">0</span>
+            <span class="s1">trainingSorter</span><span class="s2">(</span><span class="s1">trainingDay</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">trim</span><span class="s2">().</span><span class="s1">lowercase</span><span class="s2">(), </span><span class="s1">rep</span><span class="s2">)</span>
+        <span class="s2">}) {</span>
+            <span class="s1">Text</span><span class="s2">(</span><span class="s4">&quot;Sortear Treinos&quot;</span><span class="s2">)</span>
+        <span class="s2">}</span>
+        <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s5">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+        <span class="s1">sortedTrainings</span><span class="s2">.</span><span class="s1">forEach </span><span class="s2">{ </span><span class="s1">training </span><span class="s2">-&gt;</span>
+            <span class="s1">Text</span><span class="s2">(</span><span class="s1">training</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s1">@Preview</span><span class="s2">(</span><span class="s1">showBackground </span><span class="s2">= </span><span class="s0">true</span><span class="s2">)</span>
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">TrainingSorterScreenPreview</span><span class="s2">() {</span>
+    <span class="s1">SorterApplicationTheme </span><span class="s2">{</span>
+        <span class="s1">TrainingSorterScreen</span><span class="s2">()</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
